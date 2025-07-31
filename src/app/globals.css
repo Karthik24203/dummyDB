@@ -24,3 +24,14 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #10b981 #d1fae5;
+}
+
+.custom-scrollbar2 {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(199, 199, 199) white;
+  scrollbar-track-color: #10b981;
+}
