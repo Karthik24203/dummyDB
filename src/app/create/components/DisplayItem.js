@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 //import ReactJson from "react-json-view";
+import { JsonViewer } from "@textea/json-viewer";
 
 import dynamic from "next/dynamic";
 
@@ -58,13 +59,7 @@ function DisplayItem({ data, api }) {
         <div className="flex justify-center w-full h-96 overflow-auto">
           <div className="w-[600px] mt-3 bg-gray-300 rounded-lg p-4 overflow-auto custom-scrollbar2">
             {data ? (
-              <ReactJson
-                src={data}
-                theme="monokai" // You can change the theme as needed
-                collapsed={false}
-                enableClipboard={true}
-                displayDataTypes={false}
-              />
+              <JsonViewer value={data} />
             ) : (
               <p className="text-gray-500">
                 Your dummy data example will be displayed here
