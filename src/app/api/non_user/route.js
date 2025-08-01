@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { NextResponse } from "next/server";
 
-export async function GET(req) {
+export async function GET(req, res) {
   const { searchParams } = new URL(req.url);
   const { url } = req;
   console.log("a", url);
@@ -19,5 +19,19 @@ export async function GET(req) {
     arr.push(obj);
   });
   console.log(arr);
-  return NextResponse.json(arr, { status: 201 });
+  const response = NextResponse.json(arr, { status: 201 });
+  response.headers.set("Access-Control-Allow-Origin", "*");
+  response.headers.set("Access-Control-Allow-Methods", "GET, OPTIONS");
+  response.headers.set("Access-Control-Allow-Headers", "Content-Type");
+
+  return response;
+}
+
+export function OPTIONS() {
+  const response = NextResponse.json(null, { status: 204 });
+  response.headers.set("Access-Control-Allow-Origin", "*");
+  response.headers.set("Access-Control-Allow-Methods", "GET, OPTIONS");
+  response.headers.set("Access-Control-Allow-Headers", "Content-Type");
+
+  return response;
 }
