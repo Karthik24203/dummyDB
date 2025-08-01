@@ -5,6 +5,16 @@ import React, { useState } from "react";
 
 function FormItem({ items, setItems }) {
   const types = Object.keys(faker);
+  const blockedTypes = [
+    "_randomizer",
+    "helpers",
+    "rawDefinitions",
+    "definitions",
+  ];
+
+  const blockedsubTypes = ["faker", "betweens", "between", "fromCharacters"];
+
+  const allowedtypes = types.filter((type) => !blockedTypes.includes(type));
   const toggleDropDown = (index) => {
     setItems((prev) =>
       prev.map((item, i) =>
@@ -83,7 +93,7 @@ function FormItem({ items, setItems }) {
                   className=" text-center bg-green-200 rounded-xl mt-1 z-10
                 cursor-pointer w-full absolute  max-h-60 overflow-y-auto custom-scrollbar"
                 >
-                  {types
+                  {allowedtypes
                     .filter((sub) => typeof faker[sub] !== "function")
                     .map((type, i) => (
                       <div
@@ -115,7 +125,11 @@ function FormItem({ items, setItems }) {
                      absolute text-center bg-green-200 rounded-xl mt-1 z-20 cursor-pointer w-full"
                     >
                       {Object.keys(faker[item.dropDownValue])
-                        .filter((sub) => typeof faker[sub] !== "function")
+                        .filter(
+                          (sub) =>
+                            typeof faker[sub] !== "function" &&
+                            !blockedsubTypes.includes(sub)
+                        )
                         .map((sub, i) => (
                           <div
                             className="hover:bg-green-400 mx-2 rounded-lg text-lg"

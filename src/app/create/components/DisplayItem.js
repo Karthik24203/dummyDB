@@ -1,20 +1,55 @@
-import React from "react";
-import ReactJson from "react-json-view";
+"use client";
+import React, { useEffect, useState } from "react";
+//import ReactJson from "react-json-view";
+
+import dynamic from "next/dynamic";
 
 function DisplayItem({ data, api }) {
+  const [origin, setOrigin] = useState("");
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setOrigin(window.location.origin);
+    }
+  }, []);
+
+  const ReactJson = dynamic(() => import("react-json-view"), {
+    ssr: false,
+  });
+
+  const handleCopy = (e) => {
+    e.preventDefault();
+    navigator.clipboard.writeText(`${origin}${api}`);
+    setCopied(true);
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
+  };
   return (
     <div className="w-full">
       <div className="w-full mt-5">
         <h2 className="ml-5 text-2xl font-semibold flex-start">Your API:</h2>
         <div className="flex justify-center w-full">
-          <p
-            className="w-[600px] mt-3 rounded-md bg-gray-300 text-center py-3 px-2 break-words overflow-auto
-           whitespace-pre-wrap"
-          >
-            {api
-              ? `${window.location.origin}${api}`
-              : "Your API will be displayed here"}
-          </p>
+          <div className=" relative w-[600px] mt-3 ">
+            {api ? (
+              <button
+                onClick={handleCopy}
+                className=" absolute top-1 hover:opacity-100 right-1 font-mono px-2 py-1 rounded bg-black opacity-50 text-white"
+              >
+                {copied ? "copied" : "copy"}
+              </button>
+            ) : (
+              ""
+            )}
+            <p
+              className="w-[600px] rounded-md bg-gray-300  py-5 pt-8 px-2 break-all select-all break-words overflow-auto
+            whitespace-pre-wrap"
+            >
+              {api ? `${origin}${api}` : "Your API will be displayed here"}
+            </p>
+          </div>
         </div>
       </div>
 

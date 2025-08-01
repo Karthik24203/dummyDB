@@ -1,9 +1,10 @@
 "use client";
-import { az, faker } from "@faker-js/faker";
+import { az, fa, faker } from "@faker-js/faker";
 import axios from "axios";
 import React, { useState } from "react";
 import FormItem from "./components/FormItem";
 import DisplayItem from "./components/DisplayItem";
+import { FaSpinner } from "react-icons/fa";
 
 function CreateApi() {
   const [items, setItems] = useState([
@@ -15,6 +16,7 @@ function CreateApi() {
       subTypeValue: "",
     },
   ]);
+  const [loading, setLoading] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [api, setApi] = useState("");
   const [data, setData] = useState("");
@@ -37,6 +39,7 @@ function CreateApi() {
   };
 
   const handleSubmit = async () => {
+    setLoading(true);
     let types = [];
     let subtypes = [];
     let inpVal = [];
@@ -68,6 +71,7 @@ function CreateApi() {
       console.log(res.data);
       setData(res.data);
       setApi(fullUrl);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -88,7 +92,7 @@ function CreateApi() {
               onClick={handleSubmit}
               className=" bg-green-400 font-semibold text-white text-xl px-4 py-2 rounded-md"
             >
-              Submit
+              {loading ? <FaSpinner className=" animate-spin" /> : `Submit`}
             </button>
 
             <input
