@@ -1,7 +1,5 @@
-import pool from "@/lib/db";
 import { faker } from "@faker-js/faker";
 import { NextResponse } from "next/server";
-import { Pool } from "pg";
 
 export async function GET(req) {
   const { searchParams } = new URL(req.url);
