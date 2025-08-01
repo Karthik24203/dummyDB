@@ -14,7 +14,7 @@ function DisplayItem({ data, api }) {
     }
   }, []);
 
-  const ReactJson = dynamic(() => import("react-json-view"), {
+  const ReactJson = dynamic(() => import("react18-json-view"), {
     ssr: false,
   });
 
