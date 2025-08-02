@@ -19,7 +19,7 @@ export async function GET(req, res) {
     arr.push(obj);
   });
   console.log(arr);
-  const response = NextResponse.json(arr, { status: 201 });
+  const response = NextResponse.json(arr, { status: 200 });
   response.headers.set("Access-Control-Allow-Origin", "*");
   response.headers.set("Access-Control-Allow-Methods", "GET, OPTIONS");
   response.headers.set("Access-Control-Allow-Headers", "Content-Type");

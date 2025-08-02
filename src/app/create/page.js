@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import FormItem from "./components/FormItem";
 import DisplayItem from "./components/DisplayItem";
 import { FaSpinner } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 function CreateApi() {
   const [items, setItems] = useState([
@@ -43,15 +44,32 @@ function CreateApi() {
     let types = [];
     let subtypes = [];
     let inpVal = [];
-    console.log(quantity);
 
-    items.forEach((item, index) => {
+    // Validation
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      if (!item.inputValue || !item.dropDownValue || !item.subTypeValue) {
+        toast.error(
+          `Please fill out all fields (Name, Type, Subtype) for field #${
+            i + 1
+          }`,
+          {
+            style: {
+              textAlign: "center",
+              fontWeight: "600",
+              fontFamily: "monospace",
+              fontSize: "15px",
+            },
+          }
+        );
+        setLoading(false);
+        return;
+      }
+      inpVal.push(item.inputValue);
       types.push(item.dropDownValue);
       subtypes.push(item.subTypeValue);
-      inpVal.push(item.inputValue);
-    });
+    }
 
-    console.log(types, subtypes);
     try {
       const res = await axios.get("/api/non_user", {
         params: {
@@ -61,6 +79,7 @@ function CreateApi() {
           limit: quantity,
         },
       });
+
       const params = new URLSearchParams();
       inpVal.forEach((val) => params.append("inputValue[]", val));
       types.forEach((val) => params.append("types[]", val));
@@ -71,38 +90,45 @@ function CreateApi() {
       console.log(res.data);
       setData(res.data);
       setApi(fullUrl);
-      setLoading(false);
     } catch (error) {
       console.log(error);
+      alert("An error occurred while generating data.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className=" w-full flex">
       <div className=" flex-1 flex items-stretch">
-        <div className="  w-1/2  border-green-400 border-r-4">
-          <div className=" w-full flex justify-center items-center space-x-3  p-4 border-b-4 border-green-400">
+        <div className="  w-1/2  border-r-2">
+          <div className=" w-full flex justify-center items-center space-x-3  p-4 border-b-2">
             <button
               onClick={handleAdd}
-              className=" p-4 py-2 bg-green-400 text-white text-xl rounded"
+              className=" p-4 py-2  bg-blue-500 hover:bg-blue-600 active:bg-blue-700
+               text-white text-xl rounded"
             >
               Add Field
             </button>
             <button
               onClick={handleSubmit}
-              className=" bg-green-400 font-semibold text-white text-xl px-4 py-2 rounded-md"
+              className="  bg-blue-500 hover:bg-blue-600 active:bg-blue-700
+               font-semibold text-white text-xl px-4 py-2 rounded-md"
             >
               {loading ? <FaSpinner className=" animate-spin" /> : `Submit`}
             </button>
-
-            <input
-              defaultValue={1}
-              type="number"
-              className=" border px-1 py-3 text-center  rounded-2xl border-green-400"
-              min={1}
-              max={5}
-              onChange={(e) => handleQuantity(e.target.value)}
-            />
+            <div className=" flex justify-center text-lg font-semibold ml-3 items-center flex-col">
+              <label htmlFor="quantity">Quantity</label>
+              <input
+                id="quantity"
+                defaultValue={1}
+                type="number"
+                className="border py-3 text-center rounded-2xl border-blue-500"
+                min={1}
+                max={100}
+                onChange={(e) => handleQuantity(e.target.value)}
+              />
+            </div>
           </div>
           <FormItem items={items} setItems={setItems} />
         </div>

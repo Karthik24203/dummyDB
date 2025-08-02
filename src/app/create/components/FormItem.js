@@ -73,7 +73,7 @@ function FormItem({ items, setItems }) {
               placeholder="Name"
               value={item.inputValue}
               onChange={(e) => handleInputChange(index, e.target.value)}
-              className="border text-lg border-green-500 px-4 py-2 rounded-xl text-center"
+              className="border text-lg border-blue-500 px-4 py-2 rounded-xl text-center"
             />
             <div
               tabIndex="0"
@@ -81,8 +81,8 @@ function FormItem({ items, setItems }) {
               className=" relative"
             >
               <div
-                className=" bg-green-300 mt-2 py-1 cursor-pointer rounded-xl
-                 hover:bg-green-400 text-center justify-center text-lg"
+                className="  bg-blue-500 hover:bg-blue-600 active:bg-blue-700 mt-2 py-1 cursor-pointer rounded-xl
+              text-white text-center justify-center text-lg"
                 onClick={() => toggleDropDown(index)}
               >
                 {item.dropDownValue || "Type"}
@@ -90,14 +90,14 @@ function FormItem({ items, setItems }) {
 
               {item.openMain && (
                 <div
-                  className=" text-center bg-green-200 rounded-xl mt-1 z-10
+                  className=" text-center bg-blue-200 rounded-xl mt-1 z-10
                 cursor-pointer w-full absolute  max-h-60 overflow-y-auto custom-scrollbar"
                 >
                   {allowedtypes
                     .filter((sub) => typeof faker[sub] !== "function")
                     .map((type, i) => (
                       <div
-                        className=" hover:bg-green-400 mx-2 rounded-lg text-lg "
+                        className=" hover:bg-blue-400 mx-2 rounded-lg text-lg "
                         key={i}
                         onClick={() => handleDropDownSelect(index, type)}
                       >
@@ -113,8 +113,8 @@ function FormItem({ items, setItems }) {
                   tabIndex={0}
                 >
                   <div
-                    className="bg-green-300 mt-2 py-1 cursor-pointer rounded-xl
-                 hover:bg-green-400 active:bg-green-600 active:text-white  text-center justify-center text-lg"
+                    className="bg-blue-300 mt-2 py-1 cursor-pointer rounded-xl
+                 hover:bg-blue-400 active:bg-blue-600 active:text-white  text-center justify-center text-lg"
                     onClick={() => toggleSubDropdown(index)}
                   >
                     {item.subTypeValue || "SubType"}
@@ -122,7 +122,7 @@ function FormItem({ items, setItems }) {
                   {item.openSub && (
                     <div
                       className=" max-h-60 custom-scrollbar overflow-y-auto
-                     absolute text-center bg-green-200 rounded-xl mt-1 z-20 cursor-pointer w-full"
+                     absolute text-center bg-blue-200 rounded-xl mt-1 z-20 cursor-pointer w-full"
                     >
                       {Object.keys(faker[item.dropDownValue])
                         .filter(
@@ -132,7 +132,7 @@ function FormItem({ items, setItems }) {
                         )
                         .map((sub, i) => (
                           <div
-                            className="hover:bg-green-400 mx-2 rounded-lg text-lg"
+                            className="hover:bg-blue-400 mx-2 rounded-lg text-lg"
                             key={i}
                             onClick={(e) => handleSubDropDownSelect(index, sub)}
                           >

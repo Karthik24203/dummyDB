@@ -33,7 +33,7 @@ function DisplayItem({ data, api }) {
       <div className="w-full mt-5">
         <h2 className="ml-5 text-2xl font-semibold flex-start">Your API:</h2>
         <div className="flex justify-center w-full">
-          <div className=" relative w-[600px] mt-3 ">
+          <div className=" relative w-[600px]   border-2 rounded mt-3 ">
             {api ? (
               <button
                 onClick={handleCopy}
@@ -45,7 +45,7 @@ function DisplayItem({ data, api }) {
               ""
             )}
             <p
-              className="w-[600px] rounded-md bg-gray-300  py-5 pt-8 px-2 break-all select-all break-words overflow-auto
+              className="  py-5 pt-8 px-2 break-all select-all break-words overflow-auto
             whitespace-pre-wrap"
             >
               {api ? `${origin}${api}` : "Your API will be displayed here"}
@@ -57,7 +57,7 @@ function DisplayItem({ data, api }) {
       <div className="ml-5 mt-6 text-2xl flex-start">
         <h2 className="font-semibold">Your Data looks like:</h2>
         <div className="flex justify-center w-full h-96 overflow-auto">
-          <div className="w-[600px] mt-3 bg-gray-300 rounded-lg p-4 overflow-auto custom-scrollbar2">
+          <div className="w-[600px] mt-3 border-2 rounded-lg p-4 overflow-auto custom-scrollbar2">
             {data ? (
               <JsonViewer value={data} />
             ) : (

@@ -27,11 +27,12 @@ body {
 
 .custom-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: #10b981 #d1fae5;
+  scrollbar-color: #00bcfb #93d6ff;
 }
 
 .custom-scrollbar2 {
   scrollbar-width: thin;
   scrollbar-color: rgb(199, 199, 199) white;
-  scrollbar-track-color: #10b981;
+
+
 }

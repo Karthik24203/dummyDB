@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { FaBolt } from "react-icons/fa";
 
 const code = `
 [ Field Name ]     [ Data Type ]     [ Data Subtype ]
@@ -70,6 +71,24 @@ function Page() {
   "age": 32
 }`}
         </pre>
+
+        <h3 className="font-bold text-2xl mt-6">⚙️ How to Use It in Code</h3>
+        <p>Once your API is generated, fetch the data like this:</p>
+        <pre className="bg-white border border-gray-200 rounded p-4 font-mono text-sm whitespace-pre-wrap">
+          {`import axios from "axios";
+import { useEffect, useState } from "react";
+
+function App() {
+  const [data, setData] = useState(null);
+  
+  let res = await axios.get("https://dummydb.io/api/your-endpoint-id");
+  setData(res.data);
+}`}
+        </pre>
+        <p className="text-sm text-gray-600">
+          Replace <code>"https://dummydb.io/api/your-endpoint-id"</code> with
+          your actual DummyDB API URL.
+        </p>
       </div>
     </div>
   );
