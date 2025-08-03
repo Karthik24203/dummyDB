@@ -2,13 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import About from "./components/About";
+import Link from "next/link";
 
 export default function Home() {
   const router = useRouter();
-
-  const handleClick = () => {
-    router.push("/create");
-  };
 
   return (
     <div className=" w-full ">
@@ -23,20 +20,22 @@ export default function Home() {
           </h2>
         </div>
         <div className=" flex space-x-5">
-          <h2
-            onClick={handleClick}
-            className=" cursor-pointer px-5 py-2 rounded-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700
+          <Link href={"/create"} passHref>
+            <h2
+              className=" cursor-pointer px-5 py-2 rounded-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700
            border-black border-2 text-white"
-          >
-            Get Started
-          </h2>
-          <h2
-            onClick={() => router.push("/documentation")}
-            className=" cursor-pointer border-2 border-blue-600 rounded-full px-7 text-blue-600 hover:bg-blue-100
+            >
+              Get Started
+            </h2>
+          </Link>
+          <Link href={"/documentation"} passHref>
+            <h2
+              className=" cursor-pointer border-2 border-blue-600 rounded-full px-7 text-blue-600 hover:bg-blue-100
            active:bg-blue-200 py-2"
-          >
-            Docs
-          </h2>
+            >
+              Docs
+            </h2>
+          </Link>
         </div>
       </div>
       <About />
