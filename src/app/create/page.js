@@ -100,7 +100,13 @@ function CreateApi() {
 
   return (
     <div className=" w-full flex">
-      <div className=" flex-1 flex items-stretch">
+      <div className="flex justify-center h-full w-full items-center text-2xl text-center font-bold px-5 md:hidden">
+        <h2>
+          This interface is optimized for larger screens. Please switch to a
+          bigger device for the best experience.
+        </h2>
+      </div>
+      <div className=" flex-1 md:flex hidden items-stretch">
         <div className="  w-1/2  border-r-2">
           <div className=" w-full flex justify-center items-center space-x-3  p-4 border-b-2">
             <button

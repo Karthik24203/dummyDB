@@ -11,15 +11,15 @@ function About() {
   ];
 
   return (
-    <div className="min-h-[600px] bg-blue-600 text-black flex items-center justify-center px-4">
-      <div className=" w-fit bg-white rounded-lg shadow-lg p-16">
-        <h1 className="text-5xl font-bold mb-6 ">
+    <div className=" min-h-[400px] md:min-h-[600px] bg-blue-600 text-black flex items-center justify-center p-4">
+      <div className=" w-fit bg-white rounded-lg shadow-lg md:p-16 p-8">
+        <h1 className="lg:text-5xl md:text-3xl text-2xl font-bold mb-6 ">
           Why Use DummyDB?
         </h1>
-        <ul className=" space-y-4 text-gray-800 text-xl font-mono">
+        <ul className=" space-y-4 text-gray-800 lg:text-xl font-mono">
           {benefits.map((point, index) => (
             <li key={index} className="flex items-start  space-x-3">
-              <IoIosFlash className=" text-2xl text-blue-600"/>
+              <IoIosFlash className=" text-2xl text-blue-600" />
               <span>{point}</span>
             </li>
           ))}

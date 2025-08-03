@@ -30,10 +30,10 @@ function DisplayItem({ data, api }) {
   };
   return (
     <div className="w-full">
-      <div className="w-full mt-5">
+      <div className="w-full  mt-5">
         <h2 className="ml-5 text-2xl font-semibold flex-start">Your API:</h2>
         <div className="flex justify-center w-full">
-          <div className=" relative w-[600px]   border-2 rounded mt-3 ">
+          <div className=" relative md:min-w-[400px] lg:max-w-[500px] lg:w-[600px]   border-2 rounded mt-3 ">
             {api ? (
               <button
                 onClick={handleCopy}
@@ -54,14 +54,14 @@ function DisplayItem({ data, api }) {
         </div>
       </div>
 
-      <div className="ml-5 mt-6 text-2xl flex-start">
-        <h2 className="font-semibold">Your Data looks like:</h2>
+      <div className="mt-6 md:text-2xl flex flex-col items-start w-full">
+        <h2 className=" ml-6 font-semibold">Your Data looks like:</h2>
         <div className="flex justify-center w-full h-96 overflow-auto">
-          <div className="w-[600px] mt-3 border-2 rounded-lg p-4 overflow-auto custom-scrollbar2">
+          <div className=" md:w-[400px] lg:max-w-[500px] lg:w-[600px] mt-3 border-2 rounded-lg p-4 overflow-auto custom-scrollbar2">
             {data ? (
-              <JsonViewer value={data} />
+              <JsonViewer className=" text-xl" value={data} />
             ) : (
-              <p className="text-gray-500">
+              <p className="text-gray-500 text-xl">
                 Your dummy data example will be displayed here
               </p>
             )}

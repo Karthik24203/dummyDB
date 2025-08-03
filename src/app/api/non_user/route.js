@@ -4,12 +4,12 @@ import { NextResponse } from "next/server";
 export async function GET(req, res) {
   const { searchParams } = new URL(req.url);
   const { url } = req;
-  console.log("a", url);
+  //console.log("a", url);
   const types = searchParams.getAll("types[]");
   const subtypes = searchParams.getAll("subtypes[]");
   const inputValue = searchParams.getAll("inputValue[]");
   const limit = parseInt(searchParams.get("limit"));
-  console.log(types, subtypes, inputValue, limit);
+  //console.log(types, subtypes, inputValue, limit);
   let arr = [];
   Array.from({ length: limit }).forEach(() => {
     let obj = {};
@@ -18,7 +18,7 @@ export async function GET(req, res) {
     });
     arr.push(obj);
   });
-  console.log(arr);
+  //console.log(arr);
   const response = NextResponse.json(arr, { status: 200 });
   response.headers.set("Access-Control-Allow-Origin", "*");
   response.headers.set("Access-Control-Allow-Methods", "GET, OPTIONS");
